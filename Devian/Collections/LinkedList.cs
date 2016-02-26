@@ -58,7 +58,7 @@ namespace Devian.Collections
             return new LinkedListEnumerator<T>(new ListNode<T>(default(T)) { Next = _head});
         }
 
-        IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return new LinkedListEnumerator<T>(new ListNode<T>(default(T)) { Next = _head });
         }
