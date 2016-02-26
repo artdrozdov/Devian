@@ -13,11 +13,12 @@ namespace DevianTests
         {
             var lst = new LinkedList<int>();
             lst.Add(1);
-            lst.Add(1);
-            lst.Add(1);
+            lst.Add(2);
+            lst.Add(3);
+            int n = 1;
             foreach (var i in lst)
             {
-                Assert.AreEqual(1, i);
+                Assert.AreEqual(n++, i);
             }
             Assert.AreEqual(3, lst.Count);
         }

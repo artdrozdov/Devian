@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Collections;
 
 namespace Devian.Collections
@@ -23,10 +19,7 @@ namespace Devian.Collections
             
         }
 
-        object IEnumerator.Current
-        {
-            get { return new LinkedListEnumerator<T>(CurrentNode); }
-        }
+        object IEnumerator.Current => new LinkedListEnumerator<T>(CurrentNode);
 
         public bool MoveNext()
         {
@@ -36,10 +29,7 @@ namespace Devian.Collections
                 Current = CurrentNode.Value;
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public void Reset()
