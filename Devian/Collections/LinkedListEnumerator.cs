@@ -5,28 +5,29 @@ namespace Devian.Collections
 {
     class LinkedListEnumerator<T>: IEnumerator<T>
     {
-        private ListNode<T> CurrentNode { get; set; }
+        private ListNode<T> _currentNode;
         public LinkedListEnumerator(ListNode<T> node)
         {
-            CurrentNode = node;
-            Current = CurrentNode.Value;
+            _currentNode = node;
+            Current = _currentNode.Value;
         }
 
         public T Current { get; private set; }
 
         public void Dispose()
         {
-            
+            _currentNode = null;
+            Current = default(T);
         }
 
-        object IEnumerator.Current => new LinkedListEnumerator<T>(CurrentNode);
+        object IEnumerator.Current => new LinkedListEnumerator<T>(_currentNode);
 
         public bool MoveNext()
         {
-            if (CurrentNode.Next != null)
+            if (_currentNode.Next != null)
             {
-                CurrentNode = CurrentNode.Next;
-                Current = CurrentNode.Value;
+                _currentNode = _currentNode.Next;
+                Current = _currentNode.Value;
                 return true;
             }
             return false;
@@ -34,9 +35,9 @@ namespace Devian.Collections
 
         public void Reset()
         {
-            while (CurrentNode.Previous != null)
+            while (_currentNode.Previous != null)
             {
-                CurrentNode = CurrentNode.Previous;
+                _currentNode = _currentNode.Previous;
             }
         }
     }
