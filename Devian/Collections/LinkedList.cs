@@ -116,7 +116,10 @@ namespace Devian.Collections
                 while (tmp != null)
                 {
                     if (i == currentIndex++)
+                    {
                         tmp.Value = value;
+                        return;
+                    }
                     tmp = tmp.Next;
                 }
                 throw new IndexOutOfRangeException();

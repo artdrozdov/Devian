@@ -1,6 +1,6 @@
 ﻿namespace Devian.Collections
 {
-    public class ListNode<T>
+    class ListNode<T>
     {
         public ListNode(T value)
         {
