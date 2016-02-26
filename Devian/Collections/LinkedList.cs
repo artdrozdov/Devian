@@ -46,7 +46,13 @@ namespace Devian.Collections
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            var tmp = _head;
+            while (tmp != null && arrayIndex < array.Length)
+            {
+                array[arrayIndex] = tmp.Value;
+                tmp = tmp.Next;
+                arrayIndex++;
+            }
         }
 
         public int Count => _count;
