@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections;
+using System.Runtime.InteropServices;
 
 namespace Devian.Collections
 {
-    public class LinkedList<T> : ICollection<T>
+    public class LinkedList<T> : ICollection<T>, IList<T>
     {
         private ListNode<T> _head;
         private ListNode<T> _tail;
@@ -92,6 +93,30 @@ namespace Devian.Collections
                 tmp = tmp.Next;
             }
             return false;
+        }
+
+        public int IndexOf(T item)
+        {
+            int i = 0;
+            var tmp = _head;
+            while (tmp != null)
+            {
+                if (item.Equals(tmp.Value))
+                    return i;
+                i++;
+                tmp = tmp.Next;
+            }
+            return -1;
+        }
+
+        public void Insert(int index, T item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveAt(int index)
+        {
+            throw new NotImplementedException();
         }
 
         public T this[int i]
