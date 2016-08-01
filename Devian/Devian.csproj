@@ -43,6 +43,7 @@
     <Compile Include="Collections\LinkedList.cs" />
     <Compile Include="Collections\LinkedListEnumerator.cs" />
     <Compile Include="Collections\ListNode.cs" />
+    <Compile Include="DateTime\UnixTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
