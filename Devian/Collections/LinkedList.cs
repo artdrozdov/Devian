@@ -109,7 +109,28 @@ namespace Devian.Collections
 
         public void Insert(int index, T item)
         {
-            throw new NotImplementedException();
+            var node = new ListNode<T>(item);
+            if (index == 0)
+            {
+                node.Next = _head;
+                _head = node;
+                Count++;
+                return;
+            }
+
+            if (index == Count)
+            {
+                node.Previous = _tail;
+                _tail = node;
+                Count++;
+                return;
+            }
+
+            var middle = FindNode(index);
+            node.Next = middle;
+            node.Previous = middle.Previous;
+            node.Previous.Next = node;
+            Count++;
         }
 
         public void RemoveAt(int index)
@@ -168,6 +189,19 @@ namespace Devian.Collections
                 }
                 throw new IndexOutOfRangeException();
             }
+        }
+
+        private ListNode<T> FindNode(int index)
+        {
+            int currentIndex = 0;
+            var tmp = _head;
+            while (tmp != null)
+            {
+                if (index == currentIndex++)
+                    return tmp;
+                tmp = tmp.Next;
+            }
+            throw new IndexOutOfRangeException();
         }
     }
 }

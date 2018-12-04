@@ -73,5 +73,14 @@ namespace DevianTests
             Assert.AreEqual(3,lst[1]);
             Assert.AreEqual(4, lst[2]);
         }
+
+        [TestMethod]
+        public void Insert()
+        {
+            var lst = new LinkedList<int>(){1,2,4};
+            lst.Insert(2,3);
+            Assert.AreEqual(4,lst.Count);
+            Assert.AreEqual(lst[2], 3);
+        }
     }
 }
