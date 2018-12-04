@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections;
-using System.Runtime.InteropServices;
 
 namespace Devian.Collections
 {
@@ -9,7 +8,6 @@ namespace Devian.Collections
     {
         private ListNode<T> _head;
         private ListNode<T> _tail;
-        private int _count;
 
         public void Add(T item)
         {
@@ -23,14 +21,14 @@ namespace Devian.Collections
                 node.Previous = _tail;
                 _tail = _tail.Next = node;
             }
-            _count++;
+            Count++;
         }
 
         public void Clear()
         {
             _head = null;
             _tail = null;
-            _count = 0;
+            Count = 0;
         }
 
         public bool Contains(T item)
@@ -56,7 +54,7 @@ namespace Devian.Collections
             }
         }
 
-        public int Count => _count;
+        public int Count { get; private set; }
 
         public bool IsReadOnly => false;
 
@@ -87,7 +85,7 @@ namespace Devian.Collections
                     else
                         _tail = tmp.Previous;
 
-                    _count--;
+                    Count--;
                     return true;
                 }
                 tmp = tmp.Next;
@@ -116,7 +114,28 @@ namespace Devian.Collections
 
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            int currentIndex = 0;
+            var tmp = _head;
+            while (tmp != null)
+            {
+                if (index == currentIndex++)
+                {
+                    if (tmp.Previous != null)
+                        tmp.Previous.Next = tmp.Next;
+                    else
+                        _head = tmp.Next;
+
+                    if (tmp.Next != null)
+                        tmp.Next.Previous = tmp.Previous;
+                    else
+                        _tail = tmp.Previous;
+
+                    Count--;
+                    return;
+                }
+                tmp = tmp.Next;
+            }
+            throw new IndexOutOfRangeException();
         }
 
         public T this[int i]

@@ -62,5 +62,16 @@ namespace DevianTests
                 Assert.AreEqual(i, lst[i]);
             }
         }
+
+        [TestMethod]
+        public void RemoveAt()
+        {
+            var lst = new LinkedList<int>(){1,2,3,4,5,6,7};
+            lst.RemoveAt(1);
+            Assert.AreEqual(6, lst.Count);
+            Assert.AreEqual(1,lst[0]);
+            Assert.AreEqual(3,lst[1]);
+            Assert.AreEqual(4, lst[2]);
+        }
     }
 }
